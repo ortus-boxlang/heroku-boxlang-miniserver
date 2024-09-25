@@ -4,27 +4,27 @@ env
 
 # Download Adoptium JDK 21 (OpenJDK 21) and extract it
 echo "-----> Installing Adoptium JDK 21"
-curl -L -o $BUILD_DIR/jdk.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21%2B35/OpenJDK21U-jdk_x64_linux_hotspot_21_35.tar.gz
+curl -L -o $HOME/jdk.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21%2B35/OpenJDK21U-jdk_x64_linux_hotspot_21_35.tar.gz
 if [ $? -ne 0 ]; then
     echo "Failed to download JDK"
     exit 1
 fi
 
 # Extract the JDK
-tar -xzf $BUILD_DIR/jdk.tar.gz -C $BUILD_DIR
+tar -xzf $HOME/jdk.tar.gz -C $HOME
 if [ $? -ne 0 ]; then
     echo "Failed to extract JDK"
     exit 1
 fi
-rm $BUILD_DIR/jdk.tar.gz
+rm $HOME/jdk.tar.gz
 
 # Check Java version
 echo "-----> Checking Java version"
-$BUILD_DIR/jdk-21+35/bin/java -version
+$HOME/jdk-21+35/bin/java -version
 
 # Download BoxLang miniserver JAR
 echo "-----> Downloading BoxLang miniserver JAR"
-curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar
+curl -L -o $HOME/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar
 if [ $? -ne 0 ]; then
     echo "Failed to download BoxLang JAR"
     exit 1
@@ -32,6 +32,6 @@ fi
 
 # Create the Procfile for app startup using absolute path
 echo "-----> Creating Procfile"
-echo "web: $BUILD_DIR/jdk-21+35/bin/java -jar $BUILD_DIR/boxlang.jar --debug --port 80 --host 0.0.0.0" > $BUILD_DIR/Procfile
+echo "web: env; $HOME/jdk-21+35/bin/java -jar $HOME/boxlang.jar --debug --port 80 --host 0.0.0.0" > $HOME/Procfile
 
 echo "-----> Build completed successfully."
