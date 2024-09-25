@@ -1,5 +1,6 @@
 #!/bin/bash
 
+env
 
 # Download Adoptium JDK 21 (OpenJDK 21) and extract it
 echo "-----> Installing Adoptium JDK 21"
