@@ -13,10 +13,13 @@ rm $BUILD_DIR/jdk.tar.gz
 export JAVA_HOME=$BUILD_DIR/jdk-21+35
 export PATH=$JAVA_HOME/bin:$PATH
 
+# Check Java version
+$JAVA_HOME/bin/java -version
+
 # Download BoxLang miniserver JAR (replace with the correct URL)
 echo "-----> Downloading BoxLang miniserver JAR"
-curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar​
+curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar
 
 # Create the Procfile for app startup
 echo "-----> Creating Procfile"
-echo "web: java -jar $BUILD_DIR/boxlang.jar --debug --port 80 --host 0.0.0.0" > $BUILD_DIR/Procfile
+echo "web: $JAVA_HOME/bin/java -jar $BUILD_DIR/boxlang.jar --debug --port 80 --host 0.0.0.0" > $BUILD_DIR/Procfile
