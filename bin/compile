@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Set build directory
+BUILD_DIR=$1
+
+# Download Adoptium JDK 21 (OpenJDK 21) and extract it
+echo "-----> Installing Adoptium JDK 21"
+curl -L -o $BUILD_DIR/jdk.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21%2B35/OpenJDK21U-jdk_x64_linux_hotspot_21_35.tar.gz
+tar -xzf $BUILD_DIR/jdk.tar.gz -C $BUILD_DIR
+rm $BUILD_DIR/jdk.tar.gz
+
+# Set up the JDK path
+export JAVA_HOME=$BUILD_DIR/jdk-21+35
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Download BoxLang miniserver JAR (replace with the correct URL)
+echo "-----> Downloading BoxLang miniserver JAR"
+curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar​
+
+# Create the Procfile for app startup
+echo "-----> Creating Procfile"
+echo "web: java -jar $BUILD_DIR/boxlang.jar --debug --port 80 --host 0.0.0.0" > $BUILD_DIR/Procfile
