@@ -32,6 +32,6 @@ fi
 
 # Create the Procfile for app startup using absolute path
 echo "-----> Creating Procfile"
-echo "web: env; $HOME/jdk-21+35/bin/java -jar $HOME/boxlang.jar --debug --port 80 --host 0.0.0.0" > $HOME/Procfile
+echo "web: $HOME/jdk-21+35/bin/java -jar $HOME/boxlang.jar --debug --port 80 --host 0.0.0.0" > $HOME/Procfile
 
 echo "-----> Build completed successfully."
