@@ -30,7 +30,7 @@ $BUILD_DIR/jdk-21+35/bin/java -version
 
 # Download BoxLang miniserver JAR
 echo "-----> Downloading BoxLang miniserver JAR"
-curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang/boxlang-miniserver.jar
+curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang-runtimes/boxlang-miniserver/boxlang-miniserver-latest.zip
 if [ $? -ne 0 ]; then
     echo "Failed to download BoxLang JAR"
     exit 1
