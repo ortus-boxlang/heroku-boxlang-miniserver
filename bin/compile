@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Set build directory
-BUILD_DIR=$1
-
-# Start logging
-exec > $BUILD_DIR/build.log 2>&1
 
 # Download Adoptium JDK 21 (OpenJDK 21) and extract it
 echo "-----> Installing Adoptium JDK 21"
