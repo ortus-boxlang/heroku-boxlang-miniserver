@@ -30,23 +30,13 @@ $BUILD_DIR/jdk-21+35/bin/java -version
 
 # Download BoxLang miniserver JAR
 echo "-----> Downloading BoxLang miniserver JAR"
-curl -L -o $BUILD_DIR/boxlang-miniserver.zip https://downloads.ortussolutions.com/ortussolutions/boxlang-runtimes/boxlang-miniserver/boxlang-miniserver-latest.zip
+curl -L -o $BUILD_DIR/boxlang.jar https://downloads.ortussolutions.com/ortussolutions/boxlang-runtimes/boxlang-miniserver/boxlang-miniserver-snapshot-all.jar
 if [ $? -ne 0 ]; then
     echo "Failed to download BoxLang JAR"
     exit 1
 fi
 
-# Unzip the downloaded ZIP file
-echo "-----> Unzipping BoxLang miniserver JAR"
-unzip -o $BUILD_DIR/boxlang-miniserver.zip -d $BUILD_DIR
-if [ $? -ne 0 ]; then
-    echo "Failed to unzip BoxLang JAR"
-    exit 1
-fi
-
-# Remove the ZIP file
-rm $BUILD_DIR/boxlang-miniserver.zip
-le for app startup using absolute path
+# Create the Procfile for app startup using absolute path
 echo "-----> Creating Procfile"
 echo "web: env; ls -lar; jdk-21+35/bin/java -jar boxlang.jar --debug --port 80 --host 0.0.0.0" > $BUILD_DIR/Procfile
 
