@@ -1,6 +1,12 @@
 #!/bin/bash
 
+export BUILD_DIR="${1}"
+export CACHE_DIR="${2}"
+export ENV_DIR="${3}"
+
 env
+
+
 
 # Download Adoptium JDK 21 (OpenJDK 21) and extract it
 echo "-----> Installing Adoptium JDK 21"
